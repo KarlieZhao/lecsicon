@@ -140,12 +140,10 @@ function horizontalDisplay(keyword, startx, starty) {
 function wander(keyword) {
     let randomWord = word_data[Math.floor(Math.random() * word_data.length)].word;
     let batch = [];
-    batch = findSimilarWords(keyword, temperature * 1.5);
+    batch = findSimilarWords(keyword, temperature);
 
     if (batch.length > 1) {
         batch = RemoveAppearedWordsFromBatch(batch);
-        console.log(batch);
-
         if (batch.length) return batch[Math.floor(Math.random()*batch.length)];
     } else {
         batch = [...RiTa.spellsLike(keyword), ...RiTa.soundsLike(keyword)];
