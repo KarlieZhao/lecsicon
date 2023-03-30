@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <title>Lecsicon</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://unpkg.com/rita"></script>
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
     </style>
@@ -15,6 +17,33 @@
             font-family: 'Special Elite', cursive;
             background-color: #EFF0F1;
             overflow: hidden;
+        }
+        
+        button {
+            margin-right: 8%;
+            margin-bottom: 5vh;
+            font-size: 16px;
+            padding-top: 3%;
+            padding-bottom: 2%;
+            padding-left: 5%;
+            padding-right: 5%;
+            color: black;
+            font-family: 'Special Elite', cursive;
+            background-color: #EFF0F1;
+            border: 2px solid black;
+            border-radius: 8px;
+        }
+        
+        button:hover {
+            cursor: pointer;
+        }
+        
+        button:active {
+            background-color: #ddd;
+        }
+        
+        #pause {
+            width: 90px;
         }
         
         .textarea {
@@ -33,30 +62,24 @@
         }
         
         h1 {
-            font-size: 50px;
-        }
-        
-        h2 {
-            font-size: 25px;
+            font-size: 2rem;
+            text-decoration: underline;
+            text-decoration-color: #880000;
         }
         
         .title {
             position: absolute;
-            top: 130px;
-            left: 50%;
+            top: 23%;
+            left: 8%;
             line-height: 2.4rem;
             width: 45%;
+            font-size: 1rem;
         }
         
         #display {
-            width: 40vw;
-            /* border: 2px solid black; */
             position: absolute;
-            top: 350px;
-            left: 50%;
-            line-height: 3rem;
-            font-size: 25px;
-            /* text-align: center; */
+            top: 0px;
+            left: 41%;
             vertical-align: center;
         }
         
@@ -65,19 +88,66 @@
             text-decoration: underline;
             text-decoration-thickness: 2px;
         }
+        
+        .params {
+            position: absolute;
+            top: 50%;
+            left: 8%;
+            vertical-align: center;
+        }
+        
+        .slider {
+            -webkit-appearance: none;
+            /* width: 50%; */
+            height: 5px;
+            background: #fff;
+            outline: none;
+            border: 2px solid black;
+            border-radius: 8px;
+        }
+        /* for chrome/safari */
+        
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 8px;
+            height: 15px;
+            background: #000;
+            cursor: pointer;
+            border: 2px solid black;
+            border-radius: 4px;
+        }
+        /* for firefox */
+        
+        .slider::-moz-range-thumb {
+            width: 20px;
+            height: 60px;
+            background: #000;
+            cursor: pointer;
+            border: 2px solid black;
+            border-radius: 4px;
+        }
     </style>
 </head>
 
 <body onload="setup()">
-    <img src="./images/bg1.png" style="width: 46%;">
-
     <div class="title">
         <h1><a href="./about.html" style="color:#880000">Lecsicon</a></h1>
-        <h2><span style="color:#880000">L</span>inguists <span style="color:#880000">e</span>nthusiastically <span style="color:#880000">c</span>atalog <span style="color:#880000">s</span>ymbols, <br><span style="color:#880000">i</span>nterpreting <span style="color:#880000">c</span>arefully
-            <span style="color:#880000">o</span>ccurred
-            <span style="color:#880000">n</span>uances.</h2>
+        <span style="color:#880000">L</span>inguists <span style="color:#880000">e</span>nthusiastically <span style="color:#880000">c</span>atalog <span style="color:#880000">s</span>ymbols, <br><span style="color:#880000">i</span>nterpreting <span style="color:#880000">c</span>arefully
+        <span style="color:#880000">o</span>ccurred
+        <span style="color:#880000">n</span>uances.
     </div>
-    <div id="display"> </div>
+    <div class="params">
+        <button type="button" id="pause" onclick="pauseAndResume()" class="">Pause</button>
+        <br>
+        <label for="slider">Temperature &nbsp</label>
+        <input type="range" id="temp" name="slider" min="0" max="2" step="0.1" value="1" class="slider">
+        <label id="temperature_val">1.0</label>
+
+
+    </div>
+    <canvas id="display" width="1000" height="800"></canvas>
+
     <script src="./script.js"></script>
 </body>
 
