@@ -144,7 +144,7 @@ function wander(keyword) {
 
     if (batch.length > 1) {
         batch = RemoveAppearedWordsFromBatch(batch);
-        if (batch.length) return batch[Math.floor(Math.random()*batch.length)];
+        if (batch.length) return batch[Math.floor(Math.random() * batch.length)];
     } else {
         batch = [...RiTa.spellsLike(keyword), ...RiTa.soundsLike(keyword)];
         batch = batch.filter(function(word, index) {
@@ -153,12 +153,12 @@ function wander(keyword) {
         batch = batch.filter(word => keyword_list.includes(word));
         batch = RemoveAppearedWordsFromBatch(batch);
         if (batch.length) {
-            return batch[Math.floor(Math.random()*batch.length)]
+            return batch[Math.floor(Math.random() * batch.length)]
         } else {
             batch = findSimilarWords(keyword, temperature * 2);
             if (batch.length > 1) {
                 batch = RemoveAppearedWordsFromBatch(batch);
-                if (batch.length) return batch[Math.floor(Math.random()*batch.length)];
+                if (batch.length) return batch[Math.floor(Math.random() * batch.length)];
             }
         }
     }
@@ -280,4 +280,4 @@ SLIDER.onmouseup = function() {
 
     timers[timers.length - 1].delayTime += (delay - old_delay) * current_index;
     console.log(timers[timers.length - 1].delayTime);
-  };
+};
