@@ -190,7 +190,7 @@ function renderHorizontalText(text, x, y, index) {
     const partialText = text[index];
 
     if (text[index - 1] === " " || text[index - 1] === "$") {
-        ctx.fillStyle = `rgb(130, 0, 0)`;
+        ctx.fillStyle = `rgb(150, 0, 0)`;
     } else {
         ctx.fillStyle = `rgb(0, 0, 0)`;
     }
