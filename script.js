@@ -6,7 +6,8 @@ let word_data, keyword_list = [];
 const regex = /[.?!]/g;
 let textsize = 17;
 let lineHeight = 30;
-let init_x = 20;
+let init_x = 20,
+    init_y = 50;
 let displayed_word = [];
 let timers = [];
 let timers_type = [];
@@ -21,11 +22,22 @@ let delay = 70; // milliseconds
 let temperature = 1.5;
 
 function setup() {
-    display.width = window.innerWidth / 1.9 * scaleFactor;
-    display.height = window.innerHeight * scaleFactor;
-    display.style.width = window.innerWidth / 1.9 + 'px';
-    display.style.height = window.innerHeight + 'px';
-    ctx.scale(scaleFactor, scaleFactor);
+    if (isMobileDevice()) {
+        display.width = window.innerWidth * scaleFactor;
+        display.height = window.innerHeight / 2 * scaleFactor;
+        display.style.width = window.innerWidth + 'px';
+        display.style.height = window.innerHeight / (scaleFactor / 2) + 'px';
+        ctx.scale(scaleFactor, scaleFactor);
+        textsize = 30;
+        lineHeight = 55;
+    } else {
+        display.width = window.innerWidth / 1.9 * scaleFactor;
+        display.height = window.innerHeight * scaleFactor;
+        display.style.width = window.innerWidth / 1.9 + 'px';
+        display.style.height = window.innerHeight + 'px';
+        ctx.scale(scaleFactor, scaleFactor);
+        init_y = display.height / (scaleFactor * 5);
+    }
     ctx.font = textsize + "px Special Elite";
 
     ctx.textBaseline = 'top';
@@ -88,8 +100,7 @@ function init() {
     timers_type = [];
     keyword_list = word_data.map(item => item.word);
     let randomWord = word_data[Math.floor(Math.random() * word_data.length)].word;
-    let y = display.height / (scaleFactor * 5);
-    horizontalDisplay(randomWord, init_x, y);
+    horizontalDisplay(randomWord, init_x, init_y);
 }
 
 function horizontalDisplay(keyword, startx, starty) {
@@ -281,3 +292,7 @@ SLIDER.onmouseup = function() {
     timers[timers.length - 1].delayTime += (delay - old_delay) * current_index;
     console.log(timers[timers.length - 1].delayTime);
 };
+
+function isMobileDevice() {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+}
