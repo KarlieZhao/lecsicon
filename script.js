@@ -26,7 +26,7 @@ function setup() {
         display.width = window.innerWidth * scaleFactor;
         display.height = window.innerHeight / 2 * scaleFactor;
         display.style.width = window.innerWidth + 'px';
-        display.style.height = window.innerHeight / (scaleFactor / 2) + 'px';
+        display.style.height = window.innerHeight /  2 + 'px';
         ctx.scale(scaleFactor, scaleFactor);
         textsize = 30;
         lineHeight = 55;
