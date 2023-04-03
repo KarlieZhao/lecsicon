@@ -16,13 +16,14 @@ let current_index = 0;
 
 const display = document.querySelector("#display");
 const ctx = display.getContext("2d");
-const scaleFactor = window.devicePixelRatio;
+let scaleFactor = window.devicePixelRatio;
 
 let delay = 70; // milliseconds
 let temperature = 1.5;
 
 function setup() {
     if (isMobileDevice()) {
+        let scaleFactor = window.devicePixelRatio;
         display.width = window.innerWidth * scaleFactor;
         display.height = window.innerHeight / 2 * scaleFactor;
         display.style.width = window.innerWidth + 'px';
@@ -30,7 +31,7 @@ function setup() {
         ctx.scale(scaleFactor, scaleFactor);
         textsize = 30;
         lineHeight = 55;
-    } else {
+    } else {let scaleFactor = window.devicePixelRatio;
         display.width = window.innerWidth / 1.9 * scaleFactor;
         display.height = window.innerHeight * scaleFactor;
         display.style.width = window.innerWidth / 1.9 + 'px';
