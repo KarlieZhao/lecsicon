@@ -106,7 +106,6 @@
         }
         
         .slider {
-            -webkit-appearance: none;
             width: 170px;
             height: 5px;
             background: #fff;
@@ -131,9 +130,8 @@
         
         input[type=range] {
             transform: rotate(270deg);
-            /* position: absolute;
-            top: 5px; */
         }
+        
         /* for chrome/safari */
         
         .slider::-webkit-slider-thumb {
@@ -146,15 +144,13 @@
             border: 2px solid black;
             border-radius: 4px;
         }
-        /* for firefox */
+
+        /* hide the temperature slider in firefox coz it's not fucking working */
         
-        .slider::-moz-range-thumb {
-            width: 20px;
-            height: 60px;
-            background: #000;
-            cursor: pointer;
-            border: 2px solid black;
-            border-radius: 4px;
+        @-moz-document url-prefix() {
+            input[type="range"] {
+                display: none;
+            }
         }
         
         @media only screen and (max-width: 1000px) {
@@ -211,12 +207,12 @@
         <div class="params">
             <button type="button" id="pause" onclick="pauseAndResume()" class="">Pause</button>
             <br>
-            <div class="slider_wrapper">
-                <input type="range" id="temp" name="slider" min="0" max="2" step="0.1" value="1" class="slider" orient="vertical">
-                <div class="rotate">
+            <!-- <div class="slider_wrapper"> -->
+            <input type="range" id="temp" name="slider" min="0" max="2" step="0.1" value="1" class="slider" orient="vertical">
+            <!-- <div class="rotate">
                     <label for="slider">Temperature &nbsp</label>
-                    <label id="temperature_val">1.0</label></div>
-            </div>
+                    <label id="temperature_val">1.0</label></div> -->
+            <!-- </div> -->
         </div>
     </div>
     <canvas id="display" width="1000" height="800"></canvas>
