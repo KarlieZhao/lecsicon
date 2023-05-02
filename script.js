@@ -19,7 +19,7 @@ const ctx = display.getContext("2d");
 let scaleFactor = window.devicePixelRatio;
 
 let delay = 70; // milliseconds
-let temperature = 1.5;
+let temperature = 1.3;
 
 function setup() {
     if (isMobileDevice()) {
@@ -27,11 +27,12 @@ function setup() {
         display.width = window.innerWidth * scaleFactor;
         display.height = window.innerHeight / 2 * scaleFactor;
         display.style.width = window.innerWidth + 'px';
-        display.style.height = window.innerHeight /  2 + 'px';
+        display.style.height = window.innerHeight / 2 + 'px';
         ctx.scale(scaleFactor, scaleFactor);
         textsize = 30;
         lineHeight = 55;
-    } else {let scaleFactor = window.devicePixelRatio;
+    } else {
+        let scaleFactor = window.devicePixelRatio;
         display.width = window.innerWidth / 1.9 * scaleFactor;
         display.height = window.innerHeight * scaleFactor;
         display.style.width = window.innerWidth / 1.9 + 'px';
@@ -153,7 +154,9 @@ function wander(keyword) {
     let randomWord = word_data[Math.floor(Math.random() * word_data.length)].word;
     let batch = [];
     batch = findSimilarWords(keyword, temperature);
-
+    // console.log("temperature: " + temperature);
+    // console.log("batch: " + batch);
+    
     if (batch.length > 1) {
         batch = RemoveAppearedWordsFromBatch(batch);
         if (batch.length) return batch[Math.floor(Math.random() * batch.length)];
@@ -285,10 +288,10 @@ SLIDER.oninput = function() {
 };
 
 SLIDER.onmouseup = function() {
-    temperature = this.value;
+    temperature = parseFloat(this.value) + 0.3;
     document.getElementById("temperature_val").innerText = this.value;
     let old_delay = delay;
-    delay = (2.3 - temperature) * 70;
+    delay = (2.3 - parseFloat(this.value)) * 70;
 
     timers[timers.length - 1].delayTime += (delay - old_delay) * current_index;
     console.log(timers[timers.length - 1].delayTime);
