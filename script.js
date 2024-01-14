@@ -156,27 +156,10 @@ function wander(keyword) {
     batch = findSimilarWords(keyword, temperature);
     // console.log("temperature: " + temperature);
     // console.log("batch: " + batch);
-    
-    if (batch.length > 1) {
-        batch = RemoveAppearedWordsFromBatch(batch);
-        if (batch.length) return batch[Math.floor(Math.random() * batch.length)];
-    } else {
-        batch = [...RiTa.spellsLike(keyword), ...RiTa.soundsLike(keyword)];
-        batch = batch.filter(function(word, index) {
-            return batch.splice(index, 1).includes(word);
-        });
-        batch = batch.filter(word => keyword_list.includes(word));
-        batch = RemoveAppearedWordsFromBatch(batch);
-        if (batch.length) {
-            return batch[Math.floor(Math.random() * batch.length)]
-        } else {
-            batch = findSimilarWords(keyword, temperature * 2);
-            if (batch.length > 1) {
-                batch = RemoveAppearedWordsFromBatch(batch);
-                if (batch.length) return batch[Math.floor(Math.random() * batch.length)];
-            }
-        }
-    }
+
+    batch = RemoveAppearedWordsFromBatch(batch);
+    if (batch.length) return batch[Math.floor(Math.random() * batch.length)];
+
     console.log("a random word");
     return randomWord;
 }
