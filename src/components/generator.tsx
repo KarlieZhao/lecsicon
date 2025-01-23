@@ -11,9 +11,9 @@ interface TokenizedWordData {
 
 const openai = new OpenAI({
     organization: "org-86OHGzDu1zrgxhBRHX4yOeId",
-    // project: "$PROJECT_ID",
-    apiKey: import.meta.env.VITE_OPENAI_API_KEY,
-    dangerouslyAllowBrowser: true
+    apiKey: import.meta.env.VITE_OPENAI_API_KEY || "",
+    // for development
+    // dangerouslyAllowBrowser: true
 });
 
 export default function GeneratorSection() {

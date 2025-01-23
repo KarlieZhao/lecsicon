@@ -107,7 +107,7 @@ const WordDisplay: React.FC<WordDisplayProps> = ({ maxHeight = 900 }) => {
     useEffect(() => {
         const loadJSON = async () => {
             try {
-                const response = await fetch('/words.json');
+                const response = await fetch('words.json');
                 if (response.ok) {
                     const data: WordData[] = await response.json();
                     wordData.current = data;
