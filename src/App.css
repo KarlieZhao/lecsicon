@@ -149,25 +149,32 @@ button {
   filter: drop-shadow(0 0 5px #bbbbbb77)
 }
 
+.word-input {
+  width: 10rem;
+}
+
+.clear-button {
+  width: 4.5rem;
+}
+
 button {
   padding: 0 10px;
   height: 2.5rem;
-  width: 8rem;
+  width: 7rem;
   margin-left: 1.2rem;
   font-size: 1rem;
-  background-color: #ccc;
-  border: 5px solid #ccc;
+  background-color: #d1d1d1;
+  border: 5px solid #d1d1d1;
 }
 
 button:hover {
-  background-color: #e2e2e2;
-  border: 5px solid #e2e2e2;
+  background-color: #ddd;
+  border: 5px solid #ddd;
 }
 
 button:active {
-  background-color: #aaa;
-  border: 5px solid #aaa;
-  color: #fff
+  background-color: #e3e3e3;
+  border: 5px solid #e3e3e3;
 }
 
 .word-input:focus {
@@ -244,9 +251,9 @@ button:active {
   margin-top: 1.6rem;
 }
 
-.gen-prompt {
+.gen-userPrompt {
   height: 2rem;
-  margin-top: 1rem;
+  margin-top: 0.5rem;
   line-height: 1.1;
   font-size: 0.8rem;
 }

@@ -37,7 +37,7 @@ Your sentence should have a semantic connection with my word.`
     };
 
     const handleClick = (word: string) => {
-        console.log('Clicked word:', word);
+        // console.log('Clicked word:', word);
         setInputValue(word);
         setSendRequstFlag(true);
     };
@@ -47,6 +47,7 @@ Your sentence should have a semantic connection with my word.`
     }, [sendRequstFlag])
 
     const sendRequest = async () => {
+        setUserPrompt("");
         if (inputValue.trim() && isWord(inputValue.trim())) {
             try {
                 const response = await openai.chat.completions.create({
@@ -60,22 +61,16 @@ Your sentence should have a semantic connection with my word.`
                     ],
                     store: false,
                 });
-                try {
-                    const data = await response.choices?.[0]?.message?.content;
-                    if (data) {
-                        const capWord = inputValue.charAt(0).toUpperCase() + inputValue.slice(1);
-                        const words = RiTa.tokenize(data);
-                        console.log(words)
-                        const newEntry = { word: capWord, sentence: words };
-                        setDisplayedWords((prevWords) => [...prevWords, newEntry]);
-                        setSendRequstFlag(false);
-                    } else {
-                        setUserPrompt("No sentence was generated. Please try again.");
-                        setSendRequstFlag(false);
-                    }
-                } catch (error) {
-                    console.error("Error occurred while processing the response:", error);
-                    setUserPrompt("An error occurred while generating the acrostic sentence. Please try again.");
+
+                const data = response.choices?.[0]?.message?.content;
+                if (data) {
+                    const capWord = inputValue.charAt(0).toUpperCase() + inputValue.slice(1);
+                    const words = RiTa.tokenize(data);
+                    const newEntry = { word: capWord, sentence: words };
+                    setDisplayedWords((prevWords) => [...prevWords, newEntry]);
+
+                } else {
+                    setUserPrompt("Some error has occurred. Please try again.");
                 }
             } catch (error) {
                 console.error(error);
@@ -84,6 +79,7 @@ Your sentence should have a semantic connection with my word.`
         } else {
             setUserPrompt('"' + inputValue + '"' + " is not a word. Please type a word with no number, space, or punctuation.");
         }
+        setSendRequstFlag(false);
     }
 
     const renderTokens = (entry: TokenizedWordData, token: string, index: number) => {
@@ -118,6 +114,8 @@ Your sentence should have a semantic connection with my word.`
                     onClick={() => { setSendRequstFlag(true) }}
                     disabled={sendRequstFlag}>
                     {sendRequstFlag ? "Generating..." : "Look Up!"}</button>
+                <button className="clear-button"
+                    onClick={() => { setDisplayedWords([]) }}>Clear</button>
                 <div className="gen-userPrompt">{userPrompt}</div>
             </section>
             <section className="generator">
