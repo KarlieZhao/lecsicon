@@ -11,11 +11,10 @@ interface TokenizedWordData {
 const openai = new OpenAI({
     organization: "org-86OHGzDu1zrgxhBRHX4yOeId",
     apiKey: import.meta.env.VITE_OPENAI_API_KEY || "",
-    // for development
-    dangerouslyAllowBrowser: true
+    dangerouslyAllowBrowser: false
 });
 
-console.log(import.meta.env.VITE_OPENAI_API_KEY);
+// console.log(import.meta.env.VITE_OPENAI_API_KEY);
 
 export default function GeneratorSection() {
     const genPrompt = `I will give you a word. Write a sentence in which the first letter of each word sequentially spells out my word, like an acrostic sentence.
