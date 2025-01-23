@@ -23,6 +23,14 @@ jobs:
           VITE_OPENAI_API_KEY: ${{ secrets.VITE_OPENAI_API_KEY }}
         run: npm run build
 
+      - name: Check OpenAI Secret
+        env:
+          VITE_OPENAI_API_KEY: ${{ secrets.VITE_OPENAI_API_KEY }}
+        run: |
+          if [ -z "$VITE_OPENAI_API_KEY" ]; then
+            echo "OpenAI API key is not set"
+            exit 1
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
