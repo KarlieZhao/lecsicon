@@ -31,7 +31,6 @@ jobs:
             echo "OpenAI API key is not set"
             exit 1
           fi
-
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
