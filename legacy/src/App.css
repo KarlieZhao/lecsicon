@@ -1,0 +1,321 @@
+#root {
+  margin: 0 auto;
+  padding: 0rem;
+  text-align: center;
+  overflow: hidden;
+}
+
+::-moz-selection {
+  background: rgb(255, 255, 0);
+}
+
+::selection {
+  background: rgb(255, 255, 0);
+}
+
+.backgroud {
+  width: 100vw;
+}
+
+.banner {
+  position: relative;
+  display: block;
+  padding: 0;
+  margin-top: 30px;
+  margin-left: 35px;
+  width: 50vw;
+  min-width: 400px;
+  max-width: 900px;
+  will-change: filter;
+  transition: filter 300ms;
+
+  /* filter: brightness(2) blur(5px) */
+}
+
+@keyframes img-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.top-box,
+.left-box,
+.right-box {
+  position: absolute;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+  z-index: 10;
+}
+
+.top-box {
+  width: 100vw;
+  height: 1.5rem;
+  padding-top: 0.1rem;
+  top: 0;
+  left: 0;
+  border-bottom: 2px solid #1E20A5;
+}
+
+.bottom-box {
+  position: absolute;
+  z-index: 5;
+  width: 100vw;
+  height: 1.5rem;
+  padding-top: 0.1rem;
+  bottom: 0;
+  left: 0;
+  border-top: 2px solid #1E20A5;
+  border-bottom: 2px solid #1E20A5;
+  display: flex;
+  background-color: #e2e2e2;
+}
+
+.read-more {
+  display: block;
+  margin-right: 3rem;
+  margin-left: auto;
+  cursor: pointer;
+  transition: filter 0.2s ease;
+}
+
+.read-more:hover {
+  filter: drop-shadow(0 0 5px #7881bbb2);
+}
+
+.left-box {
+  width: 1.7rem;
+  height: 197vh;
+  left: 0;
+  top: 0;
+  border-right: 2px solid #1E20A5;
+}
+
+.right-box {
+  width: 1.7rem;
+  height: 197vh;
+  right: 0;
+  top: 0;
+  border-left: 2px solid #1E20A5;
+  align-items: center;
+  align-content: center;
+  display: flex;
+  cursor: pointer;
+  background-color: transparent;
+  transition: background-color 0.3s ease;
+}
+
+.right-box:hover {
+  background-color: #4e4fa422;
+}
+
+.right-box>div {
+  position: absolute;
+  transform: rotate(90deg);
+  top: 47vh;
+  right: -2.3rem;
+  width: max-content;
+  height: fit-content;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.collection {
+  position: relative;
+  display: block;
+  padding: 0;
+  /* border: 2px solid green; */
+  width: 51vw;
+  max-height: 630px;
+  margin-left: 4rem;
+  text-align: left;
+  overflow: hidden;
+  z-index: 0;
+  font-size: 1.15rem;
+}
+
+.collection * {
+  margin-top: 0
+}
+
+.collection p {
+  /* border: 1px solid orange; */
+  margin: 0.4em 3px;
+}
+
+.gen-bookmark {
+  width: 42vw;
+  height: calc(100vh - 3.6rem);
+  position: absolute;
+  text-align: left;
+  top: 1.8rem;
+  right: 1.8rem;
+  background-color: #D9D9D9aa;
+  filter: drop-shadow(-2px 0px 4px #00000022);
+  backdrop-filter: blur(5px);
+}
+
+.gen-bookmark h3 {
+  margin-bottom: 0;
+}
+
+.word-input,
+button {
+  margin-top: 1rem;
+  background-color: #e4e4e4;
+  border: 5px solid #e4e4e4;
+  border-radius: 10px;
+  color: #000;
+  font-family: "Newsreader", serif;
+  font-size: 1.2rem;
+  height: 1.8rem;
+  transition: all 0.15s ease;
+  filter: drop-shadow(0 0 5px #bbbbbb77)
+}
+
+.word-input {
+  width: 10rem;
+}
+
+.clear-button {
+  width: 4.5rem;
+}
+
+button {
+  padding: 0 10px;
+  height: 2.5rem;
+  width: 7rem;
+  margin-left: 1.2rem;
+  font-size: 1rem;
+  background-color: #d1d1d1;
+  border: 5px solid #d1d1d1;
+}
+
+button:hover {
+  background-color: #ddd;
+  border: 5px solid #ddd;
+}
+
+button:active {
+  background-color: #e3e3e3;
+  border: 5px solid #e3e3e3;
+}
+
+.word-input:focus {
+  background-color: #eee;
+  border: 5px solid #eee;
+  outline: none;
+}
+
+.text-red {
+  color: #a51e1e;
+}
+
+.acrostic {
+  position: absolute;
+  width: 30vw;
+  top: 17vh;
+  left: 200px;
+  z-index: 20;
+  transition: all 0.2s ease;
+  line-height: 1.1;
+  mix-blend-mode: color-dodge;
+  color: #000000;
+  font-size: 1.4rem;
+}
+
+.blur {
+  filter: brightness(0.5) blur(5px)
+}
+
+.text-highlight {
+  mix-blend-mode: difference;
+  background-color: #9f9cca;
+  /* color: #ffd28a; */
+}
+
+.visible {
+  opacity: 100;
+  visibility: visible;
+}
+
+.invisible {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.gen-bookmark>div {
+  overflow-y: scroll;
+  height: inherit;
+  margin: 0;
+}
+
+.sticky-section {
+  position: sticky;
+  top: 0;
+  height: 17vh;
+  width: inherit;
+  padding: 2rem;
+  padding-bottom: 0;
+  background-color: #dddddd;
+  filter: drop-shadow(0 1.5rem 10px #dddddd);
+  z-index: 200;
+  scrollbar-width: 0;
+}
+
+.generator {
+  margin: 0 2rem;
+  z-index: 1;
+  position: relative;
+  /* border: 2px solid #1E20A5; */
+  line-height: 1.2;
+}
+
+.generator p {
+  margin-top: 1.6rem;
+}
+
+.gen-userPrompt {
+  height: 2rem;
+  margin-top: 0.5rem;
+  line-height: 1.1;
+  font-size: 0.8rem;
+}
+
+.generator a {
+  cursor: pointer;
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+
+.generator a:hover {
+  color: #a51e1e
+}
+
+.text-gray,
+.text-gray a {
+  color: #333;
+  text-decoration: line-through;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+.about {
+  position: absolute;
+  display: block;
+  top: 110vh;
+  max-width: 800px;
+  min-width: 300px;
+  left: 18vw;
+  text-align: left;
+  left: 0;
+  right: 0;
+  margin-inline: auto;
+  width: 40vw;
+}
